@@ -4,14 +4,14 @@
     var WeatherController = function($scope) {
       $scope.location = null;
 
-      function init() {
+      $scope.init = function() {
                 window.onload = function() {
                   var geoSuccess = function(position) {
-                    console.log(position);
+
                     var lat = position.coords.latitude;
                     var lon = position.coords.longitude;
                     $scope.location = [lat, lon].join(",");
-                    console.log($scope.location);
+
                   };
                   var geoError = function(position) {
                     alert('Error occurred. Error code: ' + error.code);
@@ -20,7 +20,7 @@
                 };
         };
 
-        init();
+        $scope.init();
     };
 
     WeatherController.$inject = ['$scope'];
