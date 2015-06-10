@@ -49,12 +49,22 @@ describe('app: accuWeather', function() {
 });
 
 describe('testing weatherController.search', function() {
-  var mockedFactory, scope, q, deferred, $controller, object;
+  var mockedFactory, scope, q, deferred, $controller, weatherResponse;
 
   beforeEach(module('accuWeather'));
 
     beforeEach(function(){
-    object = {"temp_F": "80", "precip": "2.2"};
+
+    weatherResponse = {
+      "data": {
+        "current_condition": [
+          {
+            "temp_F": "80",
+            "precip": "2.2"
+            }
+        ]
+      }
+    };
 
     mockedFactory = {
       getForecast: function(location){
@@ -62,7 +72,6 @@ describe('testing weatherController.search', function() {
         return deferred.promise;
       }
     };
-
   });
 
   beforeEach(inject(function($rootScope, $controller, $q) {
@@ -75,32 +84,19 @@ describe('testing weatherController.search', function() {
 
   it('should request search the function', function() {
     spyOn(mockedFactory, 'getForecast').andCallThrough();
-    // scope.init();
     scope.search("newyork");
     expect(mockedFactory.getForecast).toHaveBeenCalled();
   });
 
-// describe('testing weatherController.search', function() {
-//   var mockedFactory, scope, $controller;
-//
-//   beforeEach(module('accuWeather', function($provide) {
-//     mockedFactory = {
-//       getForecast: {
-//         forecast: "sunny"
-//       }
-//     };
-//
-//     $provide.value('weatherFactory', mockedFactory);
-//   }));
-//
-//   beforeEach(inject(function($rootScope, _$controller_) {
-//     scope = $rootScope.$new();
-//     $controller = _$controller_('WeatherController', {$scope: scope});
-//   }));
-//
-//   it('should call search function', function() {
-//     spyOn(mockedFactory, 'getForecast');
-//     scope.search();
-//     expect(mockedFactory.getForecast).toHaveBeenCalled();
-//   });
+  it('should request search the function', function() {
+    scope.search("newyork");
+    expect(mockedFactory.getForecast).not.toBe(undefined);
+  });
+
+  it('currentWeather should be set by our response', function() {
+    scope.search("newyork");
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.currentWeather.temp_F).toBe("80");
+  });
 });
