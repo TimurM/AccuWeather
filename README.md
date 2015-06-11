@@ -2,8 +2,17 @@
 
 This project is an Angular application that displays historical weather as well as a weather forecast for up to 15 days.
 
-You can click here to visit the [Live App.](http://timurmeyster.me/AccuWeather)
+You can click here to visit the [Live App.](http://timurmeyster.me/WeatherApp/#/)
 
+to run this app install npm and then run:
+
+```
+npm start
+```
+to view the site navigate to:
+```
+http://localhost:8000/app/#/
+```
 ##About this App:
 
 ###Tech Overview:

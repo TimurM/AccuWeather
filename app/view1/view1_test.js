@@ -10,7 +10,7 @@ describe('app: accuWeather', function() {
     $controller = _$controller_('WeatherController', {$scope: scope});
   }))
 
-  it("ensure init method has been called", function() {
+  it("ensures init method has been called", function() {
     spyOn(scope, 'init');
     scope.init();
     expect(scope.init).toHaveBeenCalled();
@@ -30,7 +30,7 @@ describe('app: accuWeather', function() {
     $controller = _$controller_;
   }));
 
-  describe('factory: weatherFactory', function() {
+  describe('factory: weatherFactory is working properly', function() {
     var factory = null;
     beforeEach(inject(function(weatherFactory) {
       factory = weatherFactory;
@@ -49,7 +49,7 @@ describe('app: accuWeather', function() {
 });
 
 describe('testing weatherController', function() {
-  var mockedFactory, scope, q, deferred, $controller, weatherResponse;
+  var mockedFactory, weather, scope, q, deferred, $controller, weatherResponse;
 
   beforeEach(module('accuWeather'));
 
@@ -63,10 +63,40 @@ describe('testing weatherController', function() {
               "temp_F": "80",
               "precip": "2.2"
               }
+          ],
+          "weather": [
+          	{
+              "maxtempF": "68",
+          		"hourly": [
+          			{
+          			"precipMM": "0.0",
+          			}
+          		]
+            },
+            {
+              "maxtempF": "78",
+          		"hourly": [
+          			{
+          			"precipMM": "3.0",
+          			}
+          		]
+            },
+            {
+              "maxtempF": "68",
+          		"hourly": [
+          			{
+          			"precipMM": "0.0",
+          			}
+          		]
+            }
           ]
         }
       }
     };
+
+    weather = { "location": "new york",
+              "start_date": "Mon Jun 01 2015 00:00:00 GMT-0700 (PDT)",
+              "end_date": "Fri Jun 05 2015 00:00:00 GMT-0700 (PDT)"};
 
     mockedFactory = {
       getForecast: function(){
@@ -99,28 +129,58 @@ describe('testing weatherController', function() {
     expect(scope.currentWeather).not.toBe(undefined);
   });
 
-  // it('currentWeather should be set by API response', function() {
-  //   scope.search();
-  //   deferred.resolve(weatherResponse);
-  //   scope.$root.$digest();
-  //   expect(scope.currentWeather.temp_F).toBe("80");
-  // });
+  it('currentWeather should be set by API response', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.currentWeather.temp_F).toBe("80");
+  });
 
   it('should make a call to the getPastForecast function', function() {
     spyOn(mockedFactory, 'getPastWeather').andCallThrough();
-    scope.pastWeather();
+    scope.pastWeather(weather);
     expect(mockedFactory.getPastWeather).toHaveBeenCalled();
   });
 
-  // it('should request the pastWeather function', function() {
-  //   scope.pastWeather();
-  //   expect(scope.pastWeather).not.toBe(undefined);
-  // });
-  //
-  // it('pastWeather should be set by API response', function() {
-  //   scope.pastWeather();
-  //   deferred.resolve(weatherResponse);
-  //   scope.$root.$digest();
-  //   expect(scope.pastWeather.data.data.current_condition[0].temp_F).toBe("80");
-  // });
+  it('precentSunnyDays should be defined', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.precentSunnyDays).not.toBe(undefined);
+  });
+
+  it('precentSunnyDays should be set', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.precentSunnyDays).toBe(67);
+  });
+
+  it('tempArray should be populated', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.tempArray.length).toBe(3);
+  });
+
+  it('precipMM should be populated', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.precipMM.length).toBe(3);
+  });
+
+  it('precentSunnyDays should be defined', function() {
+    scope.search();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.precentSunnyDays).not.toBe(undefined);
+  });
+
+  it('pastWeather should be set by API response', function() {
+    scope.pastWeather(weather);
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.tempArray.length).toBe(3);
+  });
 });

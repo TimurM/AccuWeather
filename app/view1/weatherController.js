@@ -35,8 +35,8 @@
 
       $scope.search = function(location) {
         var location = location || $scope.location;
-
         weatherFactory.getForecast(location, '20').then(function(forecast) {
+          console.log(forecast);
           $scope.currentWeather = forecast.data.data.current_condition[0];
           parseWeatherData(forecast.data);
         })
@@ -54,7 +54,6 @@
 
       function parseWeatherData(object) {
         resetScope();
-        console.log(object.data)
         var totalDays = object.data.weather.length;
         var rainDays = 0;
 

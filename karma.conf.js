@@ -7,6 +7,7 @@ module.exports = function(config){
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/scripts/moment.min.js',
       'app/app.js',
       '/app/bower_components/Chart.js/Chart.js',
       '/app/bower_components/angular-chart.js/dist/angular-chart.js',
