@@ -11,7 +11,7 @@ You can click here to visit the [Live App.](http://timurmeyster.me/AccuWeather)
 * I used [Angular-Seed](https://github.com/angular/angular-seed) as a starting folder primarily because it come with a bunch of development and testing tools
 * The app is using World Weather Online [Local Weather API] (http://www.worldweatheronline.com/api/docs/local-city-town-weather-api.aspx) to retrieve Forecasted Weather
 * It's also using World Weather Online [Historical Weather API] (http://www.worldweatheronline.com/api/docs/local-city-town-weather-api.aspx) to retrieve Historical Weather
-* The unit tests for this application are written in Jasmine and are primarily testing the Controller & Factory functions
+* The unit tests for this application are written in Jasmine and are primarily testing the Controller's & Factory's functionality
 
 ###Features Overview:
 * The browser utilizes a [Geolocation API](https://developers.google.com/web/fundamentals/device-access/user-location/obtain-location?hl=en#determine-the-users-current-location) to get user's current location
@@ -24,14 +24,14 @@ You can click here to visit the [Live App.](http://timurmeyster.me/AccuWeather)
 ###Limitations:
 * You can only lookup historical dates for up to 35 days at a time
 * I also set a limitation for the user to look back as far as April 2015
-* A user can only look up either historical or forecasted API, because the app making 2 seperate calls
+* A user can only look up either historical or forecasted API, because the app needs to make 2 separate calls
 
 ###Development Approach
 * I've build a custom directive 'ng-currentWeather' to display current weather information
 * I'm using a [Angular Chart] (http://jtblin.github.io/angular-chart.js/#getting_started) directive to display the weather information
 * I created a weatherFactory to handle to separate requests for past weather information and for the forecasted weather information
 * Since I'm building a client-side app and my plan is to host it on github pages, I'm not securing the API Key. (if it was a production app, I would of course do it on the server side)
-* I've also have over 10 unit tests to test the functionality of the controller and the weatherFactory that I've written following TTD principals
+* I also added over 10 unit tests to test the functionality of the controller and the weatherFactory following TTD principals
 
 ###Resources used to build this app:
 

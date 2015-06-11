@@ -57,12 +57,14 @@ describe('testing weatherController.search', function() {
 
     weatherResponse = {
       "data": {
-        "current_condition": [
-          {
-            "temp_F": "80",
-            "precip": "2.2"
-            }
-        ]
+        "data": {
+          "current_condition": [
+            {
+              "temp_F": "80",
+              "precip": "2.2"
+              }
+          ]
+        }
       }
     };
 
@@ -119,6 +121,6 @@ describe('testing weatherController.search', function() {
     scope.pastWeather();
     deferred.resolve(weatherResponse);
     scope.$root.$digest();
-    expect(scope.pastWeather.data.current_condition[0].temp_F).toBe("80");
+    expect(scope.pastWeather.data.data.current_condition[0].temp_F).toBe("80");
   });
 });

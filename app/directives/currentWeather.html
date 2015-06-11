@@ -1,0 +1,31 @@
+<div class="current-weather">
+<img src='{{ datasource.weatherIconUrl[0].value }}' alt="Weather Image">
+<span>{{ datasource.temp_F }} &#8457</span>
+<table class="table table-striped">
+
+    <tr>
+        <th>Cloudiness</td>
+        <td>{{ datasource.weatherDesc[0].value }}</td>
+    </tr>
+    <tr>
+        <th>FeelsLike</td>
+        <td>{{ datasource.FeelsLikeF }} &#8457</td>
+    </tr>
+    <tr>
+        <th>Humidity</th>
+        <td>{{ datasource.humidity }}</td>
+    </tr>
+    <tr>
+        <th>Precipitation</th>
+        <td>{{ datasource.precipMM }}</td>
+    </tr>
+    <tr>
+        <th>Wind m/s</th>
+        <td>{{ datasource.windspeedMiles }}</td>
+    </tr>
+    <tr>
+        <th>Observation Time</td>
+        <td>{{ datasource.observation_time }}</td>
+    </tr>
+</table>
+</div>

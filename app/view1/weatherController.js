@@ -4,7 +4,7 @@
     var WeatherController = function($scope, weatherFactory) {
       $scope.location = null;
       $scope.currentWeather = null;
-      $scope.pastWeather = null; 
+      $scope.pastWeather = null;
 
       $scope.init = function() {
                 window.onload = function() {
@@ -26,8 +26,8 @@
           var location = location || $scope.location;
 
           weatherFactory.getForecast(location, '20').then(function(forecast) {
-            $scope.currentWeather = forecast.data.current_condition[0];
-
+            $scope.currentWeather = forecast.data.data.current_condition[0];
+            console.log($scope.currentWeather)
           })
         };
 
