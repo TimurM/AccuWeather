@@ -8,7 +8,7 @@
         $routeProvider
             .when('/', {
                 controller: 'WeatherController',
-                templateUrl: '/app/view1/weather.html'
+                templateUrl: '/view1/weather.html'
             })
             .otherwise( { redirectTo: '/' } );
     });
