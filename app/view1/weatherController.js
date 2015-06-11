@@ -67,7 +67,6 @@
           $scope.precipMM.length = 0;
         };
 
-
         $scope.init();
     };
 
