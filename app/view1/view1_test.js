@@ -41,9 +41,9 @@ describe('app: accuWeather', function() {
       expect(factory.getForecast).toEqual(jasmine.any(Function));
     });
 
-    it("Should define pastWeather function", function() {
-      expect(factory.pastWeather).toBeDefined();
-      expect(factory.pastWeather).toEqual(jasmine.any(Function));
+    it("Should define getPastWeather function", function() {
+      expect(factory.getPastWeather).toBeDefined();
+      expect(factory.getPastWeather).toEqual(jasmine.any(Function));
     });
   });
 });
@@ -67,10 +67,14 @@ describe('testing weatherController.search', function() {
     };
 
     mockedFactory = {
-      getForecast: function(location){
+      getForecast: function(){
         deferred = q.defer();
         return deferred.promise;
-      }
+      },
+      getPastWeather: function(){
+        deferred = q.defer();
+        return deferred.promise;
+      },
     };
   });
 
@@ -82,21 +86,39 @@ describe('testing weatherController.search', function() {
     });
   }));
 
-  it('should request search the function', function() {
+  it('should make a call to the getForecast function', function() {
     spyOn(mockedFactory, 'getForecast').andCallThrough();
-    scope.search("newyork");
+    scope.search();
     expect(mockedFactory.getForecast).toHaveBeenCalled();
   });
 
-  it('should request search the function', function() {
-    scope.search("newyork");
-    expect(mockedFactory.getForecast).not.toBe(undefined);
+  it('should request the search function', function() {
+    scope.search();
+    expect(scope.currentWeather).not.toBe(undefined);
   });
 
-  it('currentWeather should be set by our response', function() {
-    scope.search("newyork");
+  it('currentWeather should be set by API response', function() {
+    scope.search();
     deferred.resolve(weatherResponse);
     scope.$root.$digest();
     expect(scope.currentWeather.temp_F).toBe("80");
+  });
+
+  it('should make a call to the getPastForecast function', function() {
+    spyOn(mockedFactory, 'getPastWeather').andCallThrough();
+    scope.pastWeather();
+    expect(mockedFactory.getPastWeather).toHaveBeenCalled();
+  });
+
+  it('should request the pastWeather function', function() {
+    scope.pastWeather();
+    expect(scope.pastWeather).not.toBe(undefined);
+  });
+
+  it('pastWeather should be set by API response', function() {
+    scope.pastWeather();
+    deferred.resolve(weatherResponse);
+    scope.$root.$digest();
+    expect(scope.pastWeather.data.current_condition[0].temp_F).toBe("80");
   });
 });

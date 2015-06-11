@@ -12,8 +12,15 @@
           + '&format=json');
       };
 
-        factory.pastWeather = function(location, start_date, end_date){
-            return;
+        factory.getPastWeather = function(location, start_date, end_date){
+          return $http.get('https://api.worldweatheronline.com/premium/v1/past-weather.ashx?key=86be0dbccf2e95c06fbc644c71a22&q='
+          + location
+          + '&date='
+          + start_date
+          + '&enddate='
+          + end_date
+          + '&tp=24'
+          + '&format=json');
         };
 
         return factory;
