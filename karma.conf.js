@@ -11,8 +11,13 @@ module.exports = function(config){
       'app/components/**/*.js',
       'app/view*/**/*.js',
       'app/weatherFactory.js',
-      'app/directives/currentWeather.js'
+      'app/directives/currentWeather.js',
+      'app/directives/currentWeather_test.js'
     ],
+
+    preprocessors: {
+      "directives/currentWeather.html": ["ng-html2js"]
+    },
 
     autoWatch : true,
 
@@ -24,7 +29,8 @@ module.exports = function(config){
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-ng-html2js-preprocessor'
             ],
 
     junitReporter : {
