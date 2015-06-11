@@ -13,6 +13,13 @@ body {
   border-radius: 0px;
 }
 
+header {
+  background-image: url("../app/images/san-francisco.png");
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+}
+
 .current-city {
   padding-top: 10px;
 }
@@ -33,4 +40,33 @@ body {
 
 .current-weather > span {
   font-size: 24px;
+}
+
+#search-form > form {
+  float: left;
+}
+
+#search-form > button {
+  float: right;
+}
+
+.historical-dates {
+  margin-top: 15px;
+}
+
+input {
+  border: 1px solid rgb(210, 108, 34);
+  border-radius: 2px;
+}
+
+.btn-search {
+  background-color: rgb(210, 108, 34);
+  color: white;
+}
+
+.sunny-days {
+  background-color: rgb(80, 80, 80);
+  color: white;
+  padding: 3px 5px 3px 10px;
+  border-radius: 3px;
 }

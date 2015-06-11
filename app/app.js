@@ -2,7 +2,7 @@
 
 (function() {
 
-    var app = angular.module('accuWeather', ['ngRoute']);
+    var app = angular.module('accuWeather', ['ngRoute', 'chart.js']);
 
     app.config(function($routeProvider) {
         $routeProvider
