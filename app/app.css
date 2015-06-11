@@ -1,4 +1,18 @@
 /* app css stylesheet */
+body {
+  color: rgb(80, 80, 80);
+}
+
+.navbar {
+  background-color: rgb(80, 80, 80);
+  color: #ddd;
+  padding: 5px 0px 5px 10px;
+  font-size: 30px;
+  margin-bottom: 0px;
+  border: none;
+  border-radius: 0px;
+}
+
 .current-city {
   padding-top: 10px;
 }

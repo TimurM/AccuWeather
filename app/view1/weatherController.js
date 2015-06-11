@@ -24,50 +24,58 @@
                 };
         };
 
-        $scope.search = function(location) {
-          var location = location || $scope.location;
+      $scope.init();
 
-          weatherFactory.getForecast(location, '20').then(function(forecast) {
-            $scope.currentWeather = forecast.data.data.current_condition[0];
-            parseWeatherData(forecast.data);
-          })
-        };
+      $scope.search = function(location) {
+        var location = location || $scope.location;
 
-        $scope.pastWeather = function(location, start_date, end_date) {
-          var location = location || $scope.location;
+        weatherFactory.getForecast(location, '20').then(function(forecast) {
+          $scope.currentWeather = forecast.data.data.current_condition[0];
+          parseWeatherData(forecast.data);
+        })
+      };
 
-          weatherFactory.getPastWeather(location, start_date, end_date).then(function(pastWeather) {
-            parseWeatherData(forecast.data);
-          })
-        };
+      $scope.pastWeather = function(location, start_date, end_date) {
+        var location = location || $scope.location;
 
-        function parseWeatherData(object) {
-          resetScope();
-          var totalDays = object.data.weather.length;
-          var rainDays = 0;
+        weatherFactory.getPastWeather(location, start_date, end_date).then(function(pastWeather) {
+          parseWeatherData(forecast.data);
+        })
+      };
 
-          object.data.weather.forEach(function(day) {
-            $scope.tempArray.push(day.maxtempF);
-            $scope.tempDates.push(day.date);
-            $scope.precipMM.push(day.hourly[0].precipMM);
+      function parseWeatherData(object) {
+        resetScope();
+        var totalDays = object.data.weather.length;
+        var rainDays = 0;
 
-            if (parseInt(day.hourly[0].precipMM) > 2) {
-             rainDays += 1
-            }
-          })
-          console.log($scope.tempArray);
-          console.log($scope.tempDates);
-          console.log($scope.precipMM);
-          $scope.precentSunnyDays = Math.round((totalDays - rainDays) / totalDays * 100);
-        };
+        object.data.weather.forEach(function(day) {
+          $scope.tempArray.push(day.maxtempF);
+          $scope.tempDates.push(day.date);
+          $scope.precipMM.push(day.hourly[0].precipMM);
 
-        function resetScope() {
-          $scope.tempArray.length = 0;
-          $scope.tempDates.length = 0;
-          $scope.precipMM.length = 0;
-        };
+          if (parseInt(day.hourly[0].precipMM) > 2) {
+           rainDays += 1
+          }
+        })
+        $scope.precentSunnyDays = Math.round((totalDays - rainDays) / totalDays * 100);
+      };
 
-        $scope.init();
+      function resetScope() {
+        $scope.tempArray.length = 0;
+        $scope.tempDates.length = 0;
+        $scope.precipMM.length = 0;
+      };
+
+
+      $scope.labels = $scope.tempDates;
+      $scope.series = ['Max Temp', 'Precipitation in mm'];
+      $scope.data = [
+        $scope.tempArray,
+        $scope.precipMM
+      ];
+      $scope.onClick = function (points, evt) {
+        console.log(points, evt);
+      };
     };
 
     WeatherController.$inject = ['$scope', 'weatherFactory'];
