@@ -8,6 +8,8 @@ module.exports = function(config){
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/app.js',
+      '/app/bower_components/Chart.js/Chart.js',
+      '/app/bower_components/angular-chart.js/dist/angular-chart.js',
       'app/components/**/*.js',
       'app/view*/**/*.js',
       'app/weatherFactory.js',

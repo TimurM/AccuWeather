@@ -7,6 +7,13 @@
       $scope.tempArray = [];
       $scope.tempDates = [];
       $scope.precipMM = [];
+      $scope.historyToggle = false;
+      $scope.precentSunnyDays = null;
+
+      $scope.expand = function() {
+        $scope.historyToggle = !$scope.historyToggle;
+      }
+
 
       $scope.init = function() {
                 window.onload = function() {
@@ -35,16 +42,19 @@
         })
       };
 
-      $scope.pastWeather = function(location, start_date, end_date) {
-        var location = location || $scope.location;
+      $scope.pastWeather = function(weather) {
+        var start_date = moment(weather.start_date).format("YYYY-MM-DD");
+        var end_date = moment(weather.end_date).format("YYYY-MM-DD");
+        var location = weather.location || $scope.location;
 
         weatherFactory.getPastWeather(location, start_date, end_date).then(function(pastWeather) {
-          parseWeatherData(forecast.data);
+          parseWeatherData(pastWeather.data);
         })
       };
 
       function parseWeatherData(object) {
         resetScope();
+        console.log(object.data)
         var totalDays = object.data.weather.length;
         var rainDays = 0;
 
