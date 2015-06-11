@@ -35,9 +35,9 @@ You can click here to visit the [Live App.](http://timurmeyster.me/AccuWeather)
 
 ###Resources used to build this app:
 
-[The Weather API](http://www.worldweatheronline.com/api/docs/local-city-town-weather-api.aspx)
-[Angular-seed project]: https://github.com/angular/angular-seed
-[AngularJS Unit Testing video]: https://www.youtube.com/watch?v=UDB-jm8MWro
-[StackOverflow Article]: http://stackoverflow.com/questions/15924136/test-angularjs-factory-function-with-jasmine
-[How to test Controllers]: http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/
-[AngularJS docs]: https://docs.angularjs.org/guide/unit-testing
+* [The Weather API](http://www.worldweatheronline.com/api/docs/local-city-town-weather-api.aspx)
+* [Angular-seed project](https://github.com/angular/angular-seed)
+* [AngularJS Unit Testing video](https://www.youtube.com/watch?v=UDB-jm8MWro)
+* [StackOverflow Article](http://stackoverflow.com/questions/15924136/test-angularjs-factory-function-with-jasmine)
+* [How to test Controllers](http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/)
+* [AngularJS docs](https://docs.angularjs.org/guide/unit-testing)
